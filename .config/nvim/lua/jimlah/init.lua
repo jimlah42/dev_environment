@@ -50,7 +50,6 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
-
   require("jimlah.plugins.cmp"),
 
   -- Useful plugin to show you pending keybinds.
@@ -66,6 +65,11 @@ require('lazy').setup({
     config = function()
       vim.cmd.colorscheme 'onedark'
     end,
+  },
+
+  {
+    'Joakker/lua-json5',
+    build = './install.sh'
   },
 
   {
@@ -116,6 +120,9 @@ require('lazy').setup({
   require 'jimlah.plugins.harpoon',
   require 'jimlah.plugins.undotree',
   require 'jimlah.plugins.vim-tmux-navigator',
+  require 'jimlah.plugins.zenmode',
+  require 'jimlah.plugins.debug',
+
 }, {})
 
 require("jimlah.options")
@@ -123,6 +130,8 @@ require("jimlah.keymaps")
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+table.insert(vim._so_trails, "/?.dylib")
 
 
 require("jimlah.plugins.lsp.lsp-config")

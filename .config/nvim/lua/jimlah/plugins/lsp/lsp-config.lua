@@ -50,13 +50,17 @@ end
 --
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = {
   clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  tsserver = {
+    capabilities = capabilities,
+  },
   eslint = {
+    capabilities = capabilities,
     autoFixOnSave = true,
     codeActionOnSave = {
       enable = true,
@@ -65,6 +69,7 @@ local servers = {
 
   lua_ls = {
     Lua = {
+      capabilities = capabilities,
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
