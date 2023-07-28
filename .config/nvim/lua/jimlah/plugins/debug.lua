@@ -19,7 +19,7 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
-    'mxsdev/nvim-dap-vscode-js',
+    { 'mxsdev/nvim-dap-vscode-js', run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" },
   },
   config = function()
     local dap = require 'dap'
@@ -104,19 +104,6 @@ return {
           cwd = "${workspaceFolder}",
         },
         {
-          name = "Electron: Main Test",
-          type = "pwa-node",
-          request = "launch",
-          protocol = "inspector",
-          runtimeExecutable = {
-            command = "npm",
-            debugger_path = vim.fn.stdpath('data') .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
-            -- args = {"--inspect=5858 --remote-debugging-port=9223"},
-
-          },
-          runtimeArgs = { "run", "start" },
-        },
-        {
           type = 'pwa-node',
           request = 'launch',
           name = 'Launch Current File (pwa-node with ts-node)',
@@ -146,7 +133,22 @@ return {
           url = "http://localhost:3000",
           webRoot = "${workspaceFolder}",
           userDataDir = "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
-        }
+        },
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Debug Jest Tests",
+          -- trace = true, -- include debugger info
+          runtimeExecutable = "node",
+          runtimeArgs = {
+            "./node_modules/jest/bin/jest.js",
+            "--runInBand",
+          },
+          rootPath = "${workspaceFolder}",
+          cwd = "${workspaceFolder}",
+          console = "integratedTerminal",
+          internalConsoleOptions = "neverOpen",
+        },
       }
     end
     require('dap.ext.vscode').load_launchjs(nil,
