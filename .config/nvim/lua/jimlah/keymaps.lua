@@ -31,7 +31,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set("n", "<leader>;", "A;<Esc>", { desc = "Put semicolon at end of line" });
-vim.keymap.set("i", "<C-Space>", "<Right>", { desc = "Put semicolon at end of line" });
+vim.keymap.set("i", "<C-Space>", "<Right>", { desc = "Move left" });
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
@@ -46,10 +46,12 @@ vim.keymap.set("n", "<C-[", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("v", "<leader>rn", [[:s/]]);
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("v", "<leader>rn", [[:s/]], { desc = "Fix All Eslint Error" });
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file exicuteable"})
 
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/jimlah/init.lua<CR>", { desc = "Open nvim init file" });
+
+vim.keymap.set("n", "<leader>o", ":only<CR>", { desc = "[O]nly leave this window open" });
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
