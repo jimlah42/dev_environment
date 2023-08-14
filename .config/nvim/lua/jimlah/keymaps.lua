@@ -46,7 +46,7 @@ vim.keymap.set("n", "<C-[", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>rn", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("v", "<leader>rn", [[:s/]], { desc = "Fix All Eslint Error" });
+vim.keymap.set("v", "<leader>rn", [[:s/]], { desc = "Rename in visual selection" });
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file exicuteable"})
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/jimlah/init.lua<CR>", { desc = "Open nvim init file" });
