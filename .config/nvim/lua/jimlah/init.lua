@@ -17,6 +17,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
 --
@@ -30,6 +37,8 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
+
+  { "wellle/context.vim" },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -53,7 +62,7 @@ require('lazy').setup({
   require("jimlah.plugins.cmp"),
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',   opts = { triggers_blacklist = { n = { "v" } } } },
+  { 'folke/which-key.nvim',  opts = { triggers_blacklist = { n = { "v" } } } },
 
   -- Adds git releated signs to the gutter, as well as utilities for managing changes
   require("jimlah.plugins.gitsigns"),
@@ -128,6 +137,7 @@ require('lazy').setup({
   require 'jimlah.plugins.zenmode',
   require 'jimlah.plugins.debug',
   require 'jimlah.plugins.lsp.lsp-signature-help',
+  require 'jimlah.plugins.nvim-tree',
 
 }, {})
 

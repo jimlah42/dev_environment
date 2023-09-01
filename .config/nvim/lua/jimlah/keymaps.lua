@@ -1,5 +1,6 @@
 -- Keymaps for better default experience
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "File Tree" })
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "File Tree" })
+vim.keymap.set("n", "<leader>pv", ":NvimTreeFindFileToggle<CR>", { desc = "File Tree" })
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git status" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

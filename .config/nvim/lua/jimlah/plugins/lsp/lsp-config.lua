@@ -16,7 +16,6 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rf', vim.lsp.buf.format, '[R]e[F]ormat Code')
-
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
@@ -55,7 +54,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local servers = {
   clangd = {},
-  -- gopls = {},
+  gopls = {
+    capabilities = capabilities,
+  },
   -- pyright = {},
   -- rust_analyzer = {},
   jdtls = {},
@@ -98,6 +99,22 @@ cmp.setup {
       })
     }),
   },
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+    end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },   -- For luasnip users.
+  }, {
+    { name = 'buffer' },
+  })
 }
 
 
@@ -106,6 +123,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
+  automatic_installation = true,
 }
 
 mason_lspconfig.setup_handlers {
