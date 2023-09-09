@@ -36,6 +36,10 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Vim graphql highlight
+
+  'jparise/vim-graphql',
+
   { "windwp/nvim-ts-autotag", after = "nvim-treesitter" },
 
   { "wellle/context.vim" },

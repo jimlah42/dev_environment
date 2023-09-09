@@ -57,6 +57,7 @@ local servers = {
   gopls = {
     capabilities = capabilities,
   },
+  graphql = {},
   -- pyright = {},
   -- rust_analyzer = {},
   jdtls = {},
